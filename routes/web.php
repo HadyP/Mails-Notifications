@@ -13,5 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'ContactController@show');
+Route::get('/', 'ContactController@show')->middleware('auth');
 Route::post('store', 'ContactController@store')->name('contactEmail');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

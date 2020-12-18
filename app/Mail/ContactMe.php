@@ -31,7 +31,7 @@ class ContactMe extends Mailable
      */
     public function build()
     {
-        return $this->from('current_user@example.com')
+        return $this->from(auth()->user()->email)
                     ->markdown('mail.contact-me')
                     ->subject('More information about '. $this->topic .'.');
     }
