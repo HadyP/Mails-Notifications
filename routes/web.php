@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,9 +14,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', 'ContactController@show')->middleware('auth');
+Route::get('/', 'HomeController@home')->name('home');
+Route::get('/contact', 'ContactController@show')->middleware('auth')->name('contact');
 Route::post('store', 'ContactController@store')->name('contactEmail');
+
+
+Route::resource('payment', 'PaymentController')->middleware('auth');
+
+
+Route::get('notifications', 'UserNotificationsController@show')->middleware('auth')->name('notifications');
 
 Auth::routes();
 
